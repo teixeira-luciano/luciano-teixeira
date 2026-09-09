@@ -3,303 +3,270 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Luciano Teixeira | Product Designer Especialista (IA & Estratégia)</title>
-    <!-- Carrega Tailwind CSS -->
+    <title>Luciano Teixeira | product designer especialista</title>
+    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Carrega Fontes Personalizadas: Playfair Display (Serifada) e Inter (Sans-serif) -->
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,700;1,800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <!-- Fontes: Playfair Display (serifada) e Inter (sans-serif) -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <!-- Ícones Lucide -->
     <script src="https://unpkg.com/lucide@latest"></script>
     <style>
-        /* Definições de Cores e Fontes Baseadas no Prompt Mestre */
         :root {
-            --color-primary-light: #F9F9F9; /* Fundo Principal */
-            --color-secondary-light: #FFFFFF; /* Fundo de Cards Internos */
-            --color-text-dark: #1a1a1a; /* Preto suave para Títulos */
-            --color-text-secondary: #525252; /* Cinza escuro para Corpo */
-            --color-accent-purple: #7C3AED; /* Roxo principal */
-            --color-accent-purple-light: #F5F3FF; /* Roxo muito claro para Metodologias */
-            --color-link-bg: #1a1a1a; /* Cor de fundo da barra flutuante */
+            --paper: #F7F6F1;
+            --paper-card: #FFFFFF;
+            --ink: #1C1A16;
+            --ink-soft: #58554B;
+            --line: #DBD6C9;
+            --accent: #A23C2A;
+            --accent-soft: #F1C94A;
         }
+
+        * { box-sizing: border-box; }
 
         body {
             font-family: 'Inter', sans-serif;
-            background-color: var(--color-primary-light);
-            color: var(--color-text-dark);
-            /* AUMENTADO: line-height para mais respiro vertical */
-            line-height: 1.8;
-            /* Adiciona o scroll suave via CSS, o método mais limpo */
+            background-color: var(--paper);
+            color: var(--ink);
+            line-height: 1.7;
             scroll-behavior: smooth;
+            -webkit-font-smoothing: antialiased;
         }
 
-        /* Aplica a Playfair Display a Títulos e Logo */
-        .font-title {
+        .font-title { font-family: 'Playfair Display', serif; letter-spacing: -0.01em; }
+
+        h1, h2, h3 { text-wrap: balance; }
+        p { text-wrap: pretty; }
+
+        .kicker {
             font-family: 'Playfair Display', serif;
-            letter-spacing: -0.025em;
+            font-style: italic;
+            font-weight: 500;
+            color: var(--ink-soft);
         }
 
-        /* H1 com peso extra-bold (apenas o H1) */
-        .h1-title {
-            font-weight: 800; 
+        .fs-h1 { font-size: clamp(2.4rem, 1.35rem + 5vw, 5.25rem); line-height: 1.05; font-weight: 700; }
+        .fs-h2 { font-size: clamp(1.9rem, 1.3rem + 2.6vw, 3.1rem); line-height: 1.15; font-weight: 500; }
+        .fs-h3 { font-size: clamp(1.4rem, 1.1rem + 1.2vw, 2rem); line-height: 1.2; font-weight: 500; }
+
+        .prose-copy { max-width: 62ch; }
+
+        .mark {
+            background-image: linear-gradient(to bottom, transparent 58%, var(--accent-soft) 58%);
+            padding: 0 .1em;
         }
 
-        /* H2 e H3 com peso regular/medium (400/500) para visual limpo */
-        .h2-title, .h3-title {
-            font-weight: 400;
+        .btn-primary {
+            display: inline-flex; align-items: center; gap: .55rem;
+            background: var(--ink); color: var(--paper);
+            padding: .9rem 1.7rem; border-radius: 3px;
+            font-weight: 600; font-size: .98rem;
+            transition: background .2s ease;
         }
-        
-        /* Ajuste fino para a Timeline */
-        .timeline-item {
-            padding-left: 1.5rem;
-            position: relative;
+        .btn-primary:hover { background: var(--accent); }
+
+        .btn-secondary {
+            display: inline-flex; align-items: center; gap: .5rem;
+            border: 1px solid var(--ink); color: var(--ink);
+            padding: .8rem 1.5rem; border-radius: 3px;
+            font-weight: 600; font-size: .95rem;
+            transition: background .2s ease, color .2s ease;
         }
+        .btn-secondary:hover { background: var(--ink); color: var(--paper); }
+
+        .link-underline {
+            text-decoration: underline;
+            text-decoration-color: var(--accent);
+            text-underline-offset: 4px;
+            text-decoration-thickness: 1.5px;
+        }
+
+        .timeline-item { padding-left: 1.85rem; position: relative; }
         .timeline-item::before {
-            content: '';
-            position: absolute;
-            left: -0.5rem; /* Alinha o ponto à linha */
-            top: 0.5rem;
-            width: 0.75rem;
-            height: 0.75rem;
-            border-radius: 50%;
-            background-color: var(--color-text-dark);
+            content: ''; position: absolute; left: -0.4rem; top: 0.5rem;
+            width: 0.7rem; height: 0.7rem; border-radius: 50%;
+            background: var(--paper); border: 2px solid var(--ink-soft);
         }
-        .timeline-item.past::before {
-            background-color: theme('colors.gray.400');
+        .timeline-item.current::before { background: var(--accent); border-color: var(--accent); }
+
+        .fixed-contact-bar { display: none; }
+        @media (min-width: 1024px) {
+            .fixed-contact-bar {
+                display: flex; position: fixed; right: 0; top: 50%;
+                transform: translateY(-50%); z-index: 40;
+                flex-direction: column; gap: .25rem; padding: .6rem 0;
+            }
         }
 
-        /* Estilo da Barra de Contato Flutuante (Apenas para desktop) */
-        .fixed-contact-bar {
-            /* Padrão para mobile: invisível ou empilhado se necessário */
-            display: none;
+        a:focus-visible, button:focus-visible {
+            outline: 2px solid var(--accent); outline-offset: 3px;
         }
-        @media (min-width: 1024px) { /* lg breakpoint e acima */
-            .fixed-contact-bar {
-                display: flex; /* Mostra em desktop */
-                position: fixed;
-                right: 0;
-                top: 50%;
-                transform: translateY(-50%);
-                z-index: 40; /* Abaixo da Navbar */
-                flex-direction: column;
-                gap: 0.5rem;
-                padding: 0.75rem 0;
-            }
+
+        @media (prefers-reduced-motion: reduce) {
+            * { transition: none !important; scroll-behavior: auto !important; }
         }
     </style>
 </head>
-<body class="pt-20"> <!-- Adiciona padding-top para compensar header fixo -->
+<body class="pt-20">
 
-    <!-- Tailwind Config Custom para o modo JIT (garantir cores) -->
     <script>
         tailwind.config = {
             theme: {
                 extend: {
                     colors: {
-                        'primary-light': 'var(--color-primary-light)',
-                        'secondary-light': 'var(--color-secondary-light)',
-                        'text-dark': 'var(--color-text-dark)',
-                        'text-secondary': 'var(--color-text-secondary)',
-                        'accent-purple': 'var(--color-accent-purple)',
-                        'accent-purple-light': 'var(--color-accent-purple-light)',
+                        paper: 'var(--paper)',
+                        'paper-card': 'var(--paper-card)',
+                        ink: 'var(--ink)',
+                        'ink-soft': 'var(--ink-soft)',
+                        line: 'var(--line)',
+                        accent: 'var(--accent)',
+                        'accent-soft': 'var(--accent-soft)',
                     }
                 }
             }
         }
     </script>
 
-    <!-- Barra de Contato Flutuante (Desktop Only - Mobile usa a seção #contato) -->
-    <div class="fixed-contact-bar hidden lg:flex bg-text-dark rounded-l-lg shadow-xl">
-        <!-- LinkedIn -->
+    <!-- Barra de contato flutuante (desktop) -->
+    <div class="fixed-contact-bar bg-ink rounded-l-md shadow-lg">
         <a href="https://www.linkedin.com/in/lucianofteixeira" target="_blank" title="LinkedIn"
-           class="p-3 text-white hover:text-accent-purple transition duration-300">
-            <i data-lucide="linkedin" class="w-6 h-6"></i>
+           class="p-3 text-paper hover:text-accent-soft transition duration-200">
+            <i data-lucide="linkedin" class="w-5 h-5"></i>
         </a>
-        <!-- E-mail -->
-        <a href="mailto:luciano.teixeira.designer@outlook.com" title="E-mail"
-           class="p-3 text-white hover:text-accent-purple transition duration-300">
-            <i data-lucide="mail" class="w-6 h-6"></i>
+        <a href="mailto:luciano.teixeira.designer@outlook.com" title="e-mail"
+           class="p-3 text-paper hover:text-accent-soft transition duration-200">
+            <i data-lucide="mail" class="w-5 h-5"></i>
         </a>
     </div>
 
-    <!-- Header (Navbar) - Sticky -->
-    <header class="fixed top-0 left-0 right-0 z-50 bg-primary-light/95 backdrop-blur-sm border-b border-gray-200 h-20 flex items-center">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full flex justify-between items-center">
-            <!-- Logo - Luciano Teixeira (Serifado) -->
-            <a href="#hero" class="font-title text-text-dark text-2xl tracking-tight">
+    <!-- Header -->
+    <header class="fixed top-0 left-0 right-0 z-50 bg-paper/95 backdrop-blur-sm border-b border-line h-20 flex items-center">
+        <div class="max-w-6xl mx-auto px-5 sm:px-8 w-full flex justify-between items-center">
+            <a href="#hero" class="font-title text-ink text-xl sm:text-2xl">
                 Luciano Teixeira
             </a>
 
-            <!-- Links de Navegação (Desktop) -->
             <nav class="hidden md:flex space-x-8 items-center">
-                <a href="#bio" class="font-title text-lg text-text-secondary hover:text-text-dark transition">Sobre</a>
-                <a href="#casestudies" class="font-title text-lg text-text-secondary hover:text-text-dark transition">Cases</a>
-                <a href="#experiencia" class="font-title text-lg text-text-secondary hover:text-text-dark transition">Experiência</a>
-                <a href="#ui-portfolio" class="font-title text-lg text-text-secondary hover:text-text-dark transition">Portfólio</a>
-                <a href="#contato" class="px-5 py-2.5 bg-text-dark text-white text-base rounded-full hover:bg-gray-700 transition font-sans">
-                    Contato
-                </a>
+                <a href="#sobre" class="text-ink-soft hover:text-ink transition">sobre</a>
+                <a href="#cases" class="text-ink-soft hover:text-ink transition">cases</a>
+                <a href="#experiencia" class="text-ink-soft hover:text-ink transition">experiência</a>
+                <a href="#portfolio" class="text-ink-soft hover:text-ink transition">portfólio</a>
+                <a href="#contato" class="btn-primary !py-2 !px-4 !text-sm">contato</a>
             </nav>
 
-            <!-- Botão Menu Mobile -->
             <div class="md:hidden">
-                <!-- Adicionado ID ao botão -->
-                <button id="mobile-menu-button" class="text-text-dark">
+                <button id="mobile-menu-button" class="text-ink" aria-label="abrir menu">
                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
                 </button>
             </div>
         </div>
-        
-        <!-- Menu Mobile (Dropdown) - CORRIGIDO -->
-        <!-- Adicionado ID ao menu, escondido por padrão, e estilizado para overlay -->
-        <!-- ALTERADO: Removido /95 e backdrop-blur para garantir um fundo sólido e legível -->
-        <nav id="mobile-menu" class="hidden md:hidden absolute top-20 left-0 w-full bg-primary-light shadow-lg border-t border-gray-200">
+
+        <nav id="mobile-menu" class="hidden md:hidden absolute top-20 left-0 w-full bg-paper shadow-lg border-t border-line">
             <div class="flex flex-col space-y-4 p-5">
-                <a href="#bio" class="font-title text-lg text-text-secondary hover:text-text-dark transition">Sobre</a>
-                <a href="#casestudies" class="font-title text-lg text-text-secondary hover:text-text-dark transition">Cases</a>
-                <a href="#experiencia" class="font-title text-lg text-text-secondary hover:text-text-dark transition">Experiência</a>
-                <a href="#ui-portfolio" class="font-title text-lg text-text-secondary hover:text-text-dark transition">Portfólio</a>
-                <a href="#contato" class="mt-2 px-5 py-2.5 bg-text-dark text-white text-base rounded-full hover:bg-gray-700 transition font-sans text-center">
-                    Contato
-                </a>
+                <a href="#sobre" class="text-ink-soft hover:text-ink transition">sobre</a>
+                <a href="#cases" class="text-ink-soft hover:text-ink transition">cases</a>
+                <a href="#experiencia" class="text-ink-soft hover:text-ink transition">experiência</a>
+                <a href="#portfolio" class="text-ink-soft hover:text-ink transition">portfólio</a>
+                <a href="#contato" class="btn-primary justify-center mt-2">contato</a>
             </div>
         </nav>
     </header>
 
-    <!-- 2. Seção Hero -->
-    <section id="hero" class="min-h-screen flex items-center justify-center text-center px-4 md:px-8">
-        <div class="max-w-4xl mx-auto">
-            <p class="text-base uppercase tracking-widest mb-4 font-inter" style="color: var(--color-accent-purple);">
-                Luciano Fernando Teixeira
-            </p>
-            
-            <h1 class="font-title h1-title text-6xl sm:text-7xl md:text-8xl leading-none text-text-dark mb-6">
-                Product Designer
-                <br>
-                <span class="italic font-extrabold text-6xl sm:text-7xl md:text-8xl">com IA & Estratégia Digital</span>
-            </h1>
+    <!-- Hero -->
+    <section id="hero" class="min-h-[85vh] flex items-center px-5 sm:px-8">
+        <div class="max-w-6xl mx-auto w-full">
+            <div class="max-w-3xl">
+                <p class="kicker text-base sm:text-lg mb-5">
+                    luciano teixeira, product designer especialista
+                </p>
 
-            <!-- DIMINUÍDO: de text-xl para text-lg -->
-            <p class="text-lg text-text-secondary mb-10 max-w-2xl mx-auto">
-                Transformando desafios complexos de negócio em soluções digitais simples, escaláveis e de alto impacto.
-            </p>
+                <h1 class="font-title fs-h1 text-ink mb-7">
+                    product design de verdade, acelerado por ia.
+                </h1>
 
-            <a href="#casestudies" class="inline-flex px-8 py-3 bg-text-dark text-white text-lg rounded-full hover:bg-gray-700 transition font-sans">
-                Explorar Case Principal (+2M Downloads)
-            </a>
+                <p class="prose-copy text-base sm:text-lg text-ink-soft mb-10">
+                    há mais de 10 anos eu penso, desenho e entrego produto digital. hoje, uso ia generativa em cada etapa do processo — da pesquisa ao protótipo — pra sair da ideia ao produto testável muito mais rápido.
+                </p>
+
+                <a href="#cases" class="btn-primary">
+                    ver o case da AYA Books (+2 mi downloads)
+                </a>
+            </div>
         </div>
     </section>
 
-    <!-- 3. Seção Sobre Mim (#bio) -->
-    <section id="bio" class="py-24 md:py-32 bg-primary-light px-4 md:px-8">
+    <!-- Sobre -->
+    <section id="sobre" class="py-24 md:py-32 px-5 sm:px-8">
         <div class="max-w-6xl mx-auto">
-            <p class="text-base uppercase tracking-widest mb-3 font-inter" style="color: var(--color-accent-purple);">
-                SOBRE MIM
-            </p>
-            <h2 class="font-title h2-title text-4xl sm:text-5xl text-text-dark mb-16">
-                Especialista em Design, Inovação com IA e Paixões Pessoais
+            <h2 class="font-title fs-h2 text-ink mb-14">
+                sobre mim
             </h2>
 
-            <div class="grid lg:grid-cols-3 gap-16">
-                <!-- Coluna de Texto Principal (2/3) -->
-                <!-- AUMENTADO: space-y-8 para space-y-10 -->
-                <!-- DIMINUÍDO: text-base para text-sm -->
-                <!-- REORDENADO: Pessoal primeiro, depois profissional -->
-                <div class="lg:col-span-2 space-y-10 text-text-secondary text-sm">
-                    
-                    <!-- REORDENADO: Aspectos Pessoais movido para o topo -->
-                    <div class="pt-6 border-t border-gray-200 lg:border-t-0 lg:pt-0">
-                         <h3 class="font-title h3-title text-2xl text-text-dark mb-3">
-                            Aspectos Pessoais & Hobbies
-                        </h3>
-                        <p class="text-sm text-text-secondary space-y-4"> <!-- DIMINUÍDO: text-base para text-sm -->
-                            Sou casado e aprendi com minha mãe o carinho por plantas. Nas horas vagas, amo futebol (quase fui jogador!), e mergulho em tecnologia, filmes e séries. Tenho um drone, o que me fez amar fotografia e explorar novos lugares—minha viagem favorita é sempre praia. Churrasco é o motivo perfeito para reunir amigos e familiares, e adoro curtir shows de música brasileira com a galera.
-                        </p>
-                    </div>
-
-                    <!-- ATUALIZADO: Texto profissional com conceitos de design -->
+            <div class="grid lg:grid-cols-3 gap-14 lg:gap-16">
+                <div class="lg:col-span-2 space-y-7 text-ink-soft text-base prose-copy">
                     <p>
-                        Sou Product Designer Sênior com mais de 10 anos dedicados à criação de experiências digitais centradas no usuário. Minha abordagem une estratégia de produto (Product Discovery), concepção de design e gestão de Design Systems, aplicando conceitos-chave como <span class="text-text-dark" style="color: var(--color-accent-purple);">Heurísticas de Usabilidade</span>, <span class="text-text-dark" style="color: var(--color-accent-purple);">Acessibilidade (WCAG)</span> e a metodologia <span class="text-text-dark" style="color: var(--color-accent-purple);">Jobs-to-be-Done (JTBD)</span> para garantir a conexão direta entre a visão de negócio e a entrega de valor.
+                        sou product designer especialista, com mais de 10 anos dedicados a transformar problema complexo de negócio em produto digital simples de usar. cuido do processo inteiro — da descoberta do problema ao design system que sustenta o produto crescendo — apoiado em heurísticas de usabilidade, acessibilidade (WCAG) e jobs-to-be-done, sempre com o mesmo objetivo: cada decisão de design resolver um problema real.
                     </p>
-                    
+
                     <div>
-                        <p class="mb-4 text-text-dark">
-                            Meu grande diferencial é a utilização com entrega de valor da Inteligência Artificial Generativa e Automação (n8n). Integro ferramentas de IA em todas as etapas do processo de design:
+                        <p class="text-ink mb-3">
+                            meu maior diferencial é usar ia generativa e automação (com n8n) em cada etapa do processo:
                         </p>
-                        <ul class="list-disc ml-6 space-y-2">
-                            <li class="pl-2">
-                                <span class="text-text-dark" style="color: var(--color-accent-purple);">Pesquisa & Insights:</span> Análise assistida por IA para métricas e dados qualitativos, gerando insights mais profundos e rápidos.
-                            </li>
-                            <li class="pl-2">
-                                <span class="text-text-dark" style="color: var(--color-accent-purple);">Prototipagem Rápida:</span> Geração de conceitos visuais e protótipos em alta fidelidade acelerados por IA, reduzindo o time-to-market.
-                            </li>
-                            <li class="pl-2">
-                                <span class="text-text-dark" style="color: var(--color-accent-purple);">Estratégia:</span> Automação de processos operacionais de design/dados via n8n, liberando tempo para foco estratégico.
-                            </li>
+                        <ul class="list-disc ml-5 space-y-2">
+                            <li><span class="text-ink font-medium">pesquisa</span> — analiso dados e entrevistas mais rápido com ia, e chego a insights com mais profundidade.</li>
+                            <li><span class="text-ink font-medium">prototipagem</span> — gero conceitos visuais e protótipos de alta fidelidade com ia, o que corta bastante tempo entre a ideia e o teste.</li>
+                            <li><span class="text-ink font-medium">automação</span> — com n8n, automatizo tarefas operacionais do processo de design, pra sobrar mais tempo pra pensar estratégia.</li>
+                            <li><span class="text-ink font-medium">outras áreas</span> — lidero projetos piloto de automação com ia que resolvem dores de times além do design, colocando na mão dos colaboradores ferramentas simples de usar no dia a dia.</li>
                         </ul>
                     </div>
 
                     <p>
-                        Além do ciclo completo de design, da pesquisa à análise de dados, meu diferencial inclui a proficiência prática em <span class="text-text-dark" style="color: var(--color-accent-purple);">HTML, CSS e JavaScript básico</span>. Isso me permite não apenas criar protótipos fiéis, mas também dialogar com o time de desenvolvimento em alto nível técnico, garantindo que a visão do design seja implementada sem atritos.
+                        além do processo de design, sei HTML, CSS e javascript básico. isso me ajuda a montar protótipos mais fiéis à realidade e a conversar de igual pra igual com o time de desenvolvimento — o que evita atrito na hora de implementar.
                     </p>
-                    
-                    <!-- NOVO: Parágrafo sobre Ferramentas de Dados -->
+
                     <p>
-                        Minha análise de produto é aprofundada pelo monitoramento de dados de uso, leitura de hábitos de usuário e engajamento com ferramentas como <span class="text-text-dark" style="color: var(--color-accent-purple);">GA4</span>, <span class="text-text-dark" style="color: var(--color-accent-purple);">Clarity</span> e <span class="text-text-dark" style="color: var(--color-accent-purple);">Firebase</span>, transformando dados brutos em decisões de design que impactam o negócio.
+                        acompanho de perto como as pessoas usam o produto, com GA4, Clarity e Firebase. gosto de transformar dados brutos em decisão de design que muda o negócio de verdade.
                     </p>
-                    
-                    <p class="font-title italic text-2xl text-text-dark pt-4">
-                        "Meu foco é transformar dados e inteligência artificial em experiências digitais de alto impacto."
+
+                    <p>
+                        fora do trabalho, futebol, fotografia e uma boa viagem de praia com a família estão sempre na lista.
+                    </p>
+
+                    <p class="font-title italic fs-h3 text-ink pt-2">
+                        <span class="mark">meu foco é transformar dados e ia em produto que funciona de verdade.</span>
                     </p>
                 </div>
 
-                <!-- Coluna de Informação (1/3) -->
-                <div class="lg:col-span-1 space-y-12">
-                    <!-- Imagem de Perfil -->
-                    <div class="w-full aspect-square bg-gray-200 rounded-lg overflow-hidden flex items-center justify-center text-gray-500 border border-gray-300">
-                        <img src="img/perfil.jpeg" onerror="this.onerror=null;this.src='https://placehold.co/400x400/E5E7EB/4B5563?text=Imagem+de+Perfil';" alt="Imagem de perfil de Luciano Teixeira" class="w-full h-full object-cover">
+                <div class="lg:col-span-1 space-y-10">
+                    <div class="w-full aspect-square bg-line/40 rounded-md overflow-hidden border border-line">
+                        <img src="img/perfil.jpeg" onerror="this.onerror=null;this.src='https://placehold.co/400x400/EDEAE0/58554B?text=Foto';" alt="foto de Luciano Teixeira" class="w-full h-full object-cover">
                     </div>
 
-                    <!-- Ferramentas -->
                     <div>
-                        <!-- AUMENTADO: mb-3 para mb-4 -->
-                        <h3 class="font-title h3-title text-2xl text-text-dark mb-4 border-b pb-2">
-                            Ferramentas & Tecnologias
-                        </h3>
-                        <!-- DIMINUÍDO: text-base para text-sm -->
-                        <p class="text-sm text-text-secondary">
-                            Figma, Adobe XD, Illustrator, Photoshop, Azure, Asana, Metabase, Mixpanel. <br>
-                            IA: Gemini, ChatGPT, MidJourney, n8n (Automação).
+                        <h3 class="font-title text-lg text-ink mb-3 border-b border-line pb-2">ferramentas e tecnologias</h3>
+                        <p class="text-sm text-ink-soft">
+                            Figma, Adobe XD, Illustrator, Photoshop, Azure, Asana, Metabase, Mixpanel.<br>
+                            ia: Gemini, ChatGPT, MidJourney, n8n (automação).
                         </p>
                     </div>
 
-                    <!-- Formação -->
                     <div>
-                        <!-- AUMENTADO: mb-3 para mb-4 -->
-                        <h3 class="font-title h3-title text-2xl text-text-dark mb-4 border-b pb-2">
-                            Formação Acadêmica
-                        </h3>
-                        <!-- DIMINUÍDO: text-base para text-sm -->
-                        <p class="text-sm text-text-secondary">
-                            Pós Graduação em Mídias Digitais. <br>
-                            Superior em Marketing.
+                        <h3 class="font-title text-lg text-ink mb-3 border-b border-line pb-2">formação</h3>
+                        <p class="text-sm text-ink-soft">
+                            pós-graduação em mídias digitais.<br>
+                            superior em marketing.
                         </p>
                     </div>
 
-                    <!-- Certificados -->
                     <div>
-                        <!-- AUMENTADO: mb-3 para mb-4 -->
-                        <h3 class="font-title h3-title text-2xl text-text-dark mb-4 border-b pb-2">
-                            Eventos, Cursos e Certificados
-                        </h3>
-                        <!-- DIMINUÍDO: text-base para text-sm -->
-                        <ul class="text-sm text-text-secondary space-y-1">
-                            <li>Product Camp 2024 - PM3</li>
-                            <li>PM3 Summit - PM3</li>
-                            <li>Delegação e engajamento de equipes - PM3</li>
-                            <li>UX nas organizações - Brandster</li>
-                            <li>Design Sprints - Udemy</li>
-                            <li>Gestão Ágil com Scrum - Udemy</li>
-                            <li>UX - Creating Killer Experiencies - FIAP</li>
+                        <h3 class="font-title text-lg text-ink mb-3 border-b border-line pb-2">cursos e certificados</h3>
+                        <ul class="text-sm text-ink-soft space-y-1.5">
+                            <li>product camp 2024 (PM3)</li>
+                            <li>PM3 summit (PM3)</li>
+                            <li>delegação e engajamento de equipes (PM3)</li>
+                            <li>ux nas organizações (Brandster)</li>
+                            <li>design sprints (Udemy)</li>
+                            <li>gestão ágil com scrum (Udemy)</li>
+                            <li>ux – creating killer experiences (FIAP)</li>
                         </ul>
                     </div>
                 </div>
@@ -307,275 +274,216 @@
         </div>
     </section>
 
-    <!-- 4. Seção Case Studies (#casestudies) -->
-    <section id="casestudies" class="py-24 md:py-32 bg-primary-light px-4 md:px-8">
+    <!-- Cases -->
+    <section id="cases" class="py-24 md:py-32 px-5 sm:px-8 border-t border-line">
         <div class="max-w-6xl mx-auto">
 
-            <!-- Case 1 (AYA Books) - PRINCIPAL -->
-            <div class="grid lg:grid-cols-2 gap-12 lg:gap-24 mb-24 items-center">
-                <!-- Texto -->
-                <!-- AUMENTADO: space-y-6 para space-y-8 -->
-                <div class="space-y-8">
-                    <p class="text-sm uppercase font-semibold tracking-wider" style="color: var(--color-accent-purple);">
-                        CASE PRINCIPAL: ESTRATÉGIA E ESCALA
-                    </p>
-                    <h3 class="font-title h3-title text-3xl md:text-4xl text-text-dark">
-                        AYA Books: Escalando a experiência de leitura digital e social (+2M Downloads)
+            <!-- Case 1: AYA Books -->
+            <div class="grid lg:grid-cols-2 gap-10 lg:gap-20 mb-28 items-center">
+                <div class="space-y-6 order-2 lg:order-1">
+                    <p class="kicker text-base">case principal</p>
+                    <h3 class="font-title fs-h3 text-ink">
+                        AYA Books: escalando a leitura digital no Brasil
                     </h3>
-                    <!-- DIMINUÍDO: text-base para text-sm -->
-                    <p class="text-sm text-text-secondary">
-                        <span class="text-text-dark" style="font-weight: 500;">O Desafio:</span> Projetar e gerenciar a experiência de um leitor digital em evolução, focando na democratização da leitura no Brasil e na gestão de um produto com mais de 2 milhões de downloads. Uma aplicação de altíssimo impacto social.
+                    <p class="font-title text-3xl text-accent">+2 mi de downloads</p>
+                    <p class="text-sm sm:text-base text-ink-soft prose-copy">
+                        <span class="text-ink font-medium">o desafio:</span> desenhar e evoluir a experiência de um leitor digital que já passa de 2 milhões de downloads, ajudando a democratizar o acesso à leitura no Brasil.
                     </p>
-                    <p class="text-sm text-text-secondary pt-2" style="font-weight: 500;">
-                        Ações e Impacto do Design Sênior:
-                    </p>
-                    <!-- DIMINUÍDO: text-base para text-sm -->
-                    <ul class="list-disc ml-6 space-y-2 text-sm text-text-secondary">
-                        <li>Gestão completa do Design System, garantindo escalabilidade e consistência UI/UX.</li>
-                        <li>Design Orientado por Métricas, otimizando fluxos para alta retenção e engajamento.</li>
-                        <li>Estratégia de Branding e UI alinhada à missão de acesso à leitura.</li>
+                    <p class="text-sm sm:text-base text-ink font-medium pt-1">o que eu fiz:</p>
+                    <ul class="list-disc ml-5 space-y-2 text-sm sm:text-base text-ink-soft">
+                        <li>cuidei do design system inteiro, pra manter consistência mesmo com o produto crescendo rápido.</li>
+                        <li>usei dados de uso pra decidir o que otimizar, sempre com foco em reter e engajar leitores.</li>
+                        <li>alinhei marca e interface com a missão do produto: facilitar o acesso à leitura.</li>
                     </ul>
-                    <!-- BOTÃO ATUALIZADO -->
-                    <a href="#contato" class="inline-flex px-6 py-2.5 mt-4 bg-text-dark text-white text-base rounded-full hover:bg-gray-700 transition font-sans text-center">
-                        Quer saber mais? Me chame que conto como foi :)
+                    <a href="#contato" class="btn-secondary mt-2">
+                        quer saber mais? me chama que eu conto como foi
                     </a>
                 </div>
-                <!-- Visual -->
-                <div class="w-full aspect-[4/3] bg-gray-200 rounded-xl overflow-hidden flex items-center justify-center text-gray-500 order-first lg:order-last">
-                    <img src="img/ilustra-aya-books.png" alt="Ilustração do AYA Books">
+                <div class="w-full aspect-[4/3] bg-line/40 rounded-md overflow-hidden border border-line order-1 lg:order-2">
+                    <img src="img/ilustra-aya-books.png" alt="ilustração do AYA Books" class="w-full h-full object-cover">
                 </div>
             </div>
 
-            <!-- Case 2 (Imaginaí) - SECUNDÁRIO (COM MÚLTIPLAS ATUALIZAÇÕES) -->
-            <div class="grid lg:grid-cols-2 gap-12 lg:gap-24 items-center">
-                <!-- Visual -->
-                <div class="w-full aspect-[4/3] bg-gray-200 rounded-xl overflow-hidden relative">
-                    <!-- Imagem principal de destaque para Imaginaí -->
-                    <img src="img/ilustra-imaginai.png" alt="Ilustração do Imaginaí" class="w-full h-full object-cover rounded-xl">
+            <!-- Case 2: Imaginaí -->
+            <div class="grid lg:grid-cols-2 gap-10 lg:gap-20 items-center">
+                <div class="w-full aspect-[4/3] bg-line/40 rounded-md overflow-hidden border border-line">
+                    <img src="img/ilustra-imaginai.png" alt="ilustração do Imaginaí" class="w-full h-full object-cover">
                 </div>
 
-                <!-- Texto -->
-                <!-- AUMENTADO: space-y-6 para space-y-8 -->
-                <div class="space-y-8">
-                    <p class="text-sm uppercase font-semibold tracking-wider" style="color: var(--color-accent-purple);">
-                        CASE: CRIANDO VÍNCULOS COM IA
-                    </p>
-                    <h3 class="font-title h3-title text-3xl md:text-4xl text-text-dark">
-                        Imaginaí: Produto de IA Generativa para Vínculos Familiares
+                <div class="space-y-6">
+                    <p class="kicker text-base">case: ia criando vínculo em família</p>
+                    <h3 class="font-title fs-h3 text-ink">
+                        Imaginaí: histórias personalizadas com ia
                     </h3>
-                    
-                    <!-- Destaque de Impacto -->
-                    <div class="p-3 bg-accent-purple/10 rounded-lg">
-                        <!-- DIMINUÍDO: text-base para text-sm -->
-                        <p class="text-sm text-accent-purple font-bold">
-                            DESTAQUE: Mais de 10.000 histórias criadas no primeiro mês de lançamento.
+                    <div class="border-l-2 border-accent pl-4">
+                        <p class="text-sm sm:text-base text-ink font-medium">
+                            mais de 10 mil histórias criadas já no primeiro mês
                         </p>
                     </div>
-
-                    <!-- DIMINUÍDO: text-base para text-sm -->
-                    <p class="text-sm text-text-secondary">
-                        <span class="text-text-dark" style="font-weight: 500;">O Desafio:</span> Criar um MVP rapidamente (em semanas) de um criador de histórias customizadas por IA, reforçando o laço de customizar uma história e unir o momento de criação, criando histórias mágicas, ricas em detalhes, removendo o medo da tecnologia com uma jornada lúdica e fácil.
+                    <p class="text-sm sm:text-base text-ink-soft prose-copy">
+                        <span class="text-ink font-medium">o desafio:</span> criar, em poucas semanas, um MVP de gerador de histórias personalizadas com ia — simples o bastante pra tirar o medo da tecnologia e criar um momento mágico em família.
                     </p>
-                    <p class="text-sm text-text-secondary pt-2" style="font-weight: 500;">
-                        Entrega Multimídia e Funcionalidades (Design & Produto):
-                    </p>
-                    <!-- DIMINUÍDO: text-base para text-sm -->
-                    <ul class="list-disc ml-6 space-y-2 text-sm text-text-secondary">
-                        <li>Geração de histórias consumíveis em Texto, Áudio e Imagens exclusivas.</li>
-                        <li>Recursos interativos: Quiz de História e Moral da História.</li>
-                        <li>Opções de compartilhamento: Cards compartilháveis e Download em PDF.</li>
+                    <p class="text-sm sm:text-base text-ink font-medium pt-1">o que o produto entrega:</p>
+                    <ul class="list-disc ml-5 space-y-2 text-sm sm:text-base text-ink-soft">
+                        <li>histórias em texto, áudio e imagens exclusivas.</li>
+                        <li>quiz da história e moral da história, pra deixar a experiência mais interativa.</li>
+                        <li>cards pra compartilhar e opção de baixar em PDF.</li>
                     </ul>
-                    <p class="text-sm text-text-secondary pt-2" style="font-weight: 500;">
-                        Minha Responsabilidade (End-to-End):
-                    </p>
-                    <!-- DIMINUÍDO: text-base para text-sm -->
-                    <ul class="list-disc ml-6 space-y-2 text-sm text-text-secondary">
-                        <li>Idealização, Conceito e UX/UI.</li>
-                        <li>Prototipagem em alta fidelidade e testes rápidos.</li>
-                        <li>Programação com auxílio da IA e orquestração no n8n.</li>
-                        <li>Análise de Lançamento e Métricas de uso.</li>
+                    <p class="text-sm sm:text-base text-ink font-medium pt-1">minha responsabilidade, do início ao fim:</p>
+                    <ul class="list-disc ml-5 space-y-2 text-sm sm:text-base text-ink-soft">
+                        <li>ideia, conceito e ux/ui.</li>
+                        <li>protótipo de alta fidelidade e teste rápido com usuário.</li>
+                        <li>programação com apoio de ia e automação no n8n.</li>
+                        <li>análise de lançamento e acompanhamento de métricas.</li>
                     </ul>
-                    <!-- BOTÃO ATUALIZADO -->
-                    <a href="#contato" class="inline-flex px-6 py-2.5 mt-4 bg-text-dark text-white text-base rounded-full hover:bg-gray-700 transition font-sans text-center">
-                        Quer saber mais? Me chame que conto como foi :)
+                    <a href="#contato" class="btn-secondary mt-2">
+                        quer saber mais? me chama que eu conto como foi
                     </a>
                 </div>
             </div>
-            
-            <!-- Outros Projetos AYA (ATUALIZADO) -->
+
+            <!-- Outros produtos AYA -->
             <div class="pt-24 max-w-2xl mx-auto text-center">
-                <h3 class="font-title h3-title text-3xl text-text-dark mb-6">
-                    Outros Produtos e Plataformas da Família AYA
+                <h3 class="font-title text-2xl text-ink mb-6">
+                    outros produtos da família AYA
                 </h3>
-                <div class="flex flex-wrap justify-center gap-x-6 gap-y-3">
-                    <!-- DIMINUÍDO: text-lg para text-base -->
-                    <span class="text-base text-text-dark" style="font-weight: 500;">AYA Bancah - notícias, revistas e jornais digitais</span> 
-                    <span class="text-base text-text-dark" style="font-weight: 500;">AYA Ensinah - apostilas e livros</span>
-                    <span class="text-base text-text-dark" style="font-weight: 500;">AYA Equilibrah - vídeos e conteúdos de bem-estar</span>
-                    <span class="text-base text-text-dark" style="font-weight: 500;">AYA Play - vídeos e conteúdos Globo CBN</span>
+                <div class="flex flex-col gap-3 text-sm sm:text-base text-ink-soft">
+                    <p><span class="text-ink font-medium">AYA Bancah:</span> notícias, revistas e jornais digitais</p>
+                    <p><span class="text-ink font-medium">AYA Ensinah:</span> apostilas e livros</p>
+                    <p><span class="text-ink font-medium">AYA Equilibrah:</span> vídeos e conteúdo de bem-estar</p>
+                    <p><span class="text-ink font-medium">AYA Play:</span> vídeos e conteúdo da Globo CBN</p>
                 </div>
-                <!-- DIMINUÍDO: text-base para text-sm -->
-                <p class="text-sm text-text-secondary italic mt-4">
-                    Atuação na concepção, estratégia, discovery e desenvolvimento dos aplicativos (Android e iOS) e dos sites.
+                <p class="text-sm text-ink-soft italic mt-5">
+                    também participei da concepção, estratégia, discovery e desenvolvimento desses apps (android e ios) e sites.
                 </p>
             </div>
 
         </div>
     </section>
 
-    <!-- 5. Seção Portfólio UI (#ui-portfolio) -->
-    <section id="ui-portfolio" class="py-24 md:py-32 bg-primary-light px-4 md:px-8 text-center">
+    <!-- Portfólio -->
+    <section id="portfolio" class="py-24 md:py-32 px-5 sm:px-8 border-t border-line">
         <div class="max-w-6xl mx-auto">
-            <p class="text-base uppercase tracking-widest mb-3 font-inter" style="color: var(--color-accent-purple);">
-                DESIGN VISUAL & PORTFÓLIO UI/UX
-            </p>
+            <h2 class="font-title fs-h2 text-ink mb-3">portfólio visual</h2>
+            <p class="text-ink-soft mb-14 prose-copy">alguns recortes de tela e sistema que desenhei ao longo dos anos.</p>
 
-            <!-- Grid de Imagens do Portfólio (12 Itens) -->
-            <!-- AUMENTADO: gap-6 para gap-8 -->
-            <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-8">
-                <!-- Imagens de port-1.jpg até port-12.jpg -->
-                <div class="w-full aspect-square rounded-lg overflow-hidden border border-gray-200 shadow-sm hover:shadow-lg transition duration-300">
-                    <img src="img/port-1.jpg" onerror="this.onerror=null;this.src='https://placehold.co/400x400/F3F4F6/9CA3AF?text=UI+Shot+1';" alt="UI Shot 1 do portfólio" class="w-full h-full object-cover">
+            <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-5">
+                <div class="w-full aspect-square rounded-sm overflow-hidden border border-line hover:opacity-80 transition duration-200">
+                    <img src="img/port-1.jpg" onerror="this.onerror=null;this.src='https://placehold.co/400x400/EDEAE0/58554B?text=UI+1';" alt="tela do portfólio 1" class="w-full h-full object-cover">
                 </div>
-                <div class="w-full aspect-square rounded-lg overflow-hidden border border-gray-200 shadow-sm hover:shadow-lg transition duration-300">
-                    <img src="img/port-2.jpg" onerror="this.onerror=null;this.src='https://placehold.co/400x400/F3F4F6/9CA3AF?text=UI+Shot+2';" alt="UI Shot 2 do portfólio" class="w-full h-full object-cover">
+                <div class="w-full aspect-square rounded-sm overflow-hidden border border-line hover:opacity-80 transition duration-200">
+                    <img src="img/port-2.jpg" onerror="this.onerror=null;this.src='https://placehold.co/400x400/EDEAE0/58554B?text=UI+2';" alt="tela do portfólio 2" class="w-full h-full object-cover">
                 </div>
-                <div class="w-full aspect-square rounded-lg overflow-hidden border border-gray-200 shadow-sm hover:shadow-lg transition duration-300">
-                    <img src="img/port-3.jpg" onerror="this.onerror=null;this.src='https://placehold.co/400x400/F3F4F6/9CA3AF?text=UI+Shot+3';" alt="UI Shot 3 do portfólio" class="w-full h-full object-cover">
+                <div class="w-full aspect-square rounded-sm overflow-hidden border border-line hover:opacity-80 transition duration-200">
+                    <img src="img/port-3.jpg" onerror="this.onerror=null;this.src='https://placehold.co/400x400/EDEAE0/58554B?text=UI+3';" alt="tela do portfólio 3" class="w-full h-full object-cover">
                 </div>
-                <div class="w-full aspect-square rounded-lg overflow-hidden border border-gray-200 shadow-sm hover:shadow-lg transition duration-300">
-                    <img src="img/port-4.jpg" onerror="this.onerror=null;this.src='https://placehold.co/400x400/F3F4F6/9CA3AF?text=UI+Shot+4';" alt="UI Shot 4 do portfólio" class="w-full h-full object-cover">
+                <div class="w-full aspect-square rounded-sm overflow-hidden border border-line hover:opacity-80 transition duration-200">
+                    <img src="img/port-4.jpg" onerror="this.onerror=null;this.src='https://placehold.co/400x400/EDEAE0/58554B?text=UI+4';" alt="tela do portfólio 4" class="w-full h-full object-cover">
                 </div>
-                <div class="w-full aspect-square rounded-lg overflow-hidden border border-gray-200 shadow-sm hover:shadow-lg transition duration-300">
-                    <img src="img/port-5.jpg" onerror="this.onerror=null;this.src='https://placehold.co/400x400/F3F4F6/9CA3AF?text=UI+Shot+5';" alt="UI Shot 5 do portfólio" class="w-full h-full object-cover">
+                <div class="w-full aspect-square rounded-sm overflow-hidden border border-line hover:opacity-80 transition duration-200">
+                    <img src="img/port-5.jpg" onerror="this.onerror=null;this.src='https://placehold.co/400x400/EDEAE0/58554B?text=UI+5';" alt="tela do portfólio 5" class="w-full h-full object-cover">
                 </div>
-                <div class="w-full aspect-square rounded-lg overflow-hidden border border-gray-200 shadow-sm hover:shadow-lg transition duration-300">
-                    <img src="img/port-6.jpg" onerror="this.onerror=null;this.src='https://placehold.co/400x400/F3F4F6/9CA3AF?text=UI+Shot+6';" alt="UI Shot 6 do portfólio" class="w-full h-full object-cover">
+                <div class="w-full aspect-square rounded-sm overflow-hidden border border-line hover:opacity-80 transition duration-200">
+                    <img src="img/port-6.jpg" onerror="this.onerror=null;this.src='https://placehold.co/400x400/EDEAE0/58554B?text=UI+6';" alt="tela do portfólio 6" class="w-full h-full object-cover">
                 </div>
-                <div class="w-full aspect-square rounded-lg overflow-hidden border border-gray-200 shadow-sm hover:shadow-lg transition duration-300">
-                    <img src="img/port-7.jpg" onerror="this.onerror=null;this.src='https://placehold.co/400x400/F3F4F6/9CA3AF?text=UI+Shot+7';" alt="UI Shot 7 do portfólio" class="w-full h-full object-cover">
+                <div class="w-full aspect-square rounded-sm overflow-hidden border border-line hover:opacity-80 transition duration-200">
+                    <img src="img/port-7.jpg" onerror="this.onerror=null;this.src='https://placehold.co/400x400/EDEAE0/58554B?text=UI+7';" alt="tela do portfólio 7" class="w-full h-full object-cover">
                 </div>
-                <div class="w-full aspect-square rounded-lg overflow-hidden border border-gray-200 shadow-sm hover:shadow-lg transition duration-300">
-                    <img src="img/port-8.jpg" onerror="this.onerror=null;this.src='https://placehold.co/400x400/F3F4F6/9CA3AF?text=UI+Shot+8';" alt="UI Shot 8 do portfólio" class="w-full h-full object-cover">
+                <div class="w-full aspect-square rounded-sm overflow-hidden border border-line hover:opacity-80 transition duration-200">
+                    <img src="img/port-8.jpg" onerror="this.onerror=null;this.src='https://placehold.co/400x400/EDEAE0/58554B?text=UI+8';" alt="tela do portfólio 8" class="w-full h-full object-cover">
                 </div>
-                <div class="w-full aspect-square rounded-lg overflow-hidden border border-gray-200 shadow-sm hover:shadow-lg transition duration-300">
-                    <img src="img/port-9.jpg" onerror="this.onerror=null;this.src='https://placehold.co/400x400/F3F4F6/9CA3AF?text=UI+Shot+9';" alt="UI Shot 9 do portfólio" class="w-full h-full object-cover">
+                <div class="w-full aspect-square rounded-sm overflow-hidden border border-line hover:opacity-80 transition duration-200">
+                    <img src="img/port-9.jpg" onerror="this.onerror=null;this.src='https://placehold.co/400x400/EDEAE0/58554B?text=UI+9';" alt="tela do portfólio 9" class="w-full h-full object-cover">
                 </div>
-                <div class="w-full aspect-square rounded-lg overflow-hidden border border-gray-200 shadow-sm hover:shadow-lg transition duration-300">
-                    <img src="img/port-10.jpg" onerror="this.onerror=null;this.src='https://placehold.co/400x400/F3F4F6/9CA3AF?text=UI+Shot+10';" alt="UI Shot 10 do portfólio" class="w-full h-full object-cover">
+                <div class="w-full aspect-square rounded-sm overflow-hidden border border-line hover:opacity-80 transition duration-200">
+                    <img src="img/port-10.jpg" onerror="this.onerror=null;this.src='https://placehold.co/400x400/EDEAE0/58554B?text=UI+10';" alt="tela do portfólio 10" class="w-full h-full object-cover">
                 </div>
-                <div class="w-full aspect-square rounded-lg overflow-hidden border border-gray-200 shadow-sm hover:shadow-lg transition duration-300">
-                    <img src="img/port-11.jpg" onerror="this.onerror=null;this.src='https://placehold.co/400x400/F3F4F6/9CA3AF?text=UI+Shot+11';" alt="UI Shot 11 do portfólio" class="w-full h-full object-cover">
+                <div class="w-full aspect-square rounded-sm overflow-hidden border border-line hover:opacity-80 transition duration-200">
+                    <img src="img/port-11.jpg" onerror="this.onerror=null;this.src='https://placehold.co/400x400/EDEAE0/58554B?text=UI+11';" alt="tela do portfólio 11" class="w-full h-full object-cover">
                 </div>
-                <div class="w-full aspect-square rounded-lg overflow-hidden border border-gray-200 shadow-sm hover:shadow-lg transition duration-300">
-                    <img src="img/port-12.jpg" onerror="this.onerror=null;this.src='https://placehold.co/400x400/F3F4F6/9CA3AF?text=UI+Shot+12';" alt="UI Shot 12 do portfólio" class="w-full h-full object-cover">
+                <div class="w-full aspect-square rounded-sm overflow-hidden border border-line hover:opacity-80 transition duration-200">
+                    <img src="img/port-12.jpg" onerror="this.onerror=null;this.src='https://placehold.co/400x400/EDEAE0/58554B?text=UI+12';" alt="tela do portfólio 12" class="w-full h-full object-cover">
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- 6. Seção Metodologias (#metodologias) - Fundo de Destaque -->
-    <section id="metodologias" class="py-24 md:py-32 px-4 md:px-8 text-center" style="background-color: var(--color-accent-purple-light);">
+    <!-- Metodologias -->
+    <section id="metodologias" class="py-24 md:py-32 px-5 sm:px-8 border-t border-line">
         <div class="max-w-6xl mx-auto">
-            <p class="text-base uppercase tracking-widest mb-3 font-inter" style="color: var(--color-accent-purple);">
-                PROCESSO & MINDSET
-            </p>
-            <h2 class="font-title h2-title text-4xl sm:text-5xl text-text-dark mb-16">
-                Estruturando a Criação de Produtos
-            </h2>
+            <h2 class="font-title fs-h2 text-ink mb-14">como eu trabalho</h2>
 
-            <div class="grid lg:grid-cols-4 gap-8">
-                <!-- Card 1: Double Diamond -->
-                <div class="bg-secondary-light p-8 rounded-xl shadow-sm hover:shadow-md transition duration-300 border border-gray-100">
-                    <span class="text-4xl block mb-4" style="color: var(--color-accent-purple);"><i data-lucide="gem"></i></span>
-                    <h3 class="font-title h3-title text-2xl text-text-dark mb-3">Double Diamond</h3>
-                    <!-- DIMINUÍDO: text-base para text-sm -->
-                    <p class="text-sm text-text-secondary">
-                        Estruturação de projetos desde a Descoberta (Research & Discovery) até a entrega (Delivery).
+            <div class="grid sm:grid-cols-2 gap-x-10 gap-y-10">
+                <div class="border-t border-line pt-5">
+                    <i data-lucide="gem" class="w-6 h-6 mb-3 text-accent"></i>
+                    <h3 class="font-title text-xl text-ink mb-2">Double Diamond</h3>
+                    <p class="text-sm sm:text-base text-ink-soft">
+                        separo o projeto em duas fases, descoberta e entrega, pra garantir que a gente resolve o problema certo antes de sair desenhando.
                     </p>
                 </div>
-                <!-- Card 2: Design Sprints -->
-                <div class="bg-secondary-light p-8 rounded-xl shadow-sm hover:shadow-md transition duration-300 border border-gray-100">
-                    <span class="text-4xl block mb-4" style="color: var(--color-accent-purple);"><i data-lucide="zap"></i></span>
-                    <h3 class="font-title h3-title text-2xl text-text-dark mb-3">Design Sprints</h3>
-                    <!-- DIMINUÍDO: text-base para text-sm -->
-                    <p class="text-sm text-text-secondary">
-                        Liderança em sessões intensivas para validação rápida de hipóteses e MVPs.
+                <div class="border-t border-line pt-5">
+                    <i data-lucide="zap" class="w-6 h-6 mb-3 text-accent"></i>
+                    <h3 class="font-title text-xl text-ink mb-2">Design Sprint</h3>
+                    <p class="text-sm sm:text-base text-ink-soft">
+                        lidero sprints curtos e intensos pra testar hipóteses e validar MVP rápido, sem gastar meses decidindo.
                     </p>
                 </div>
-                <!-- Card 3: Design Critiques -->
-                <div class="bg-secondary-light p-8 rounded-xl shadow-sm hover:shadow-md transition duration-300 border border-gray-100">
-                    <span class="text-4xl block mb-4" style="color: var(--color-accent-purple);"><i data-lucide="message-square"></i></span>
-                    <h3 class="font-title h3-title text-2xl text-text-dark mb-3">Design Critiques</h3>
-                    <!-- DIMINUÍDO: text-base para text-sm -->
-                    <p class="text-sm text-text-secondary">
-                        Criação de cultura de feedback estruturado e de alta qualidade entre times.
+                <div class="border-t border-line pt-5">
+                    <i data-lucide="message-square" class="w-6 h-6 mb-3 text-accent"></i>
+                    <h3 class="font-title text-xl text-ink mb-2">cultura de crítica</h3>
+                    <p class="text-sm sm:text-base text-ink-soft">
+                        crio o hábito de feedback estruturado no time, pra melhorar o trabalho sem virar bagunça.
                     </p>
                 </div>
-                <!-- Card 4: Data-Driven Design -->
-                <div class="bg-secondary-light p-8 rounded-xl shadow-sm hover:shadow-md transition duration-300 border border-gray-100">
-                    <span class="text-4xl block mb-4" style="color: var(--color-accent-purple);"><i data-lucide="trending-up"></i></span>
-                    <h3 class="font-title h3-title text-2xl text-text-dark mb-3">Design Orientado por Dados</h3>
-                    <!-- DIMINUÍDO: text-base para text-sm -->
-                    <p class="text-sm text-text-secondary">
-                        Uso de métricas (Qual/Quant) e testes A/B para guiar decisões de design e negócio.
+                <div class="border-t border-line pt-5">
+                    <i data-lucide="trending-up" class="w-6 h-6 mb-3 text-accent"></i>
+                    <h3 class="font-title text-xl text-ink mb-2">decisão orientada por dados</h3>
+                    <p class="text-sm sm:text-base text-ink-soft">
+                        uso dados qualitativos e quantitativos, incluindo teste A/B, pra decidir com base em fato — não em achismo.
                     </p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- 7. Seção Experiência (#experiencia) -->
-    <section id="experiencia" class="py-24 md:py-32 bg-primary-light px-4 md:px-8 text-center">
+    <!-- Experiência -->
+    <section id="experiencia" class="py-24 md:py-32 px-5 sm:px-8 border-t border-line">
         <div class="max-w-6xl mx-auto">
-            <p class="text-base uppercase tracking-widest mb-3 font-inter" style="color: var(--color-accent-purple);">
-                CARREIRA & TRAJETÓRIA
-            </p>
-            <h2 class="font-title h2-title text-4xl sm:text-5xl text-text-dark mb-16">
-                Experiência Profissional (10+ Anos)
-            </h2>
+            <h2 class="font-title fs-h2 text-ink mb-1">experiência</h2>
+            <p class="text-ink-soft mb-16">mais de 10 anos de carreira</p>
 
-            <!-- Timeline Vertical -->
-            <div class="max-w-3xl mx-auto">
-                <div class="relative border-l-2 border-gray-300 pl-8 space-y-12">
-                    
-                    <!-- Item 1 (Atual) -->
+            <div class="max-w-3xl">
+                <div class="relative border-l border-line pl-8 space-y-12">
+
+                    <div class="timeline-item current">
+                        <h3 class="font-semibold text-lg sm:text-xl text-ink">product designer especialista na EXA</h3>
+                        <p class="text-sm text-ink-soft mb-2">agosto de 2022 – hoje</p>
+                        <p class="text-sm text-ink-soft">
+                            lidero o design de produtos complexos, juntando ux, ia generativa e estratégia de negócio.
+                        </p>
+                    </div>
+
                     <div class="timeline-item">
-                        <h3 class="font-semibold text-xl text-text-dark">Senior Product Designer @ EXA</h3>
-                        <p class="text-sm text-gray-500 mb-2">agosto de 2022 - Presente</p>
-                        <!-- DIMINUÍDO: text-base para text-sm -->
-                        <p class="text-sm text-text-secondary">
-                            Liderança no design de produtos complexos, unindo UX, IA generativa e estratégia de negócio para impulsionar a inovação digital e sistemas escaláveis.
+                        <h3 class="font-semibold text-lg sm:text-xl text-ink">ux/ui designer na Verisoft</h3>
+                        <p class="text-sm text-ink-soft mb-2">novembro de 2012 – agosto de 2022 (9 anos e 10 meses)</p>
+                        <p class="text-sm text-ink-soft">
+                            passei quase 10 anos no ciclo completo de desenvolvimento de software, criando interface e experiência de usuário.
                         </p>
                     </div>
 
-                    <!-- Item 2 -->
-                    <div class="timeline-item past">
-                        <h3 class="font-semibold text-xl text-text-dark">UX/UI Designer @ Verisoft</h3>
-                        <p class="text-sm text-gray-500 mb-2">novembro de 2012 - agosto de 2022 (9 anos 10 meses)</p>
-                        <!-- DIMINUÍDO: text-base para text-sm -->
-                        <p class="text-sm text-text-secondary">
-                            Atuação de longo prazo no ciclo completo de desenvolvimento de software, criando interfaces e experiências de usuário aprofundadas.
+                    <div class="timeline-item">
+                        <h3 class="font-semibold text-lg sm:text-xl text-ink">desenvolvedor web na Consulfarma e ADA TINA Italy</h3>
+                        <p class="text-sm text-ink-soft mb-2">novembro de 2009 – novembro de 2012 (3 anos e 1 mês)</p>
+                        <p class="text-sm text-ink-soft">
+                            desenvolvi e mantive loja virtual e site — foi ali que aprendi a base técnica de HTML, CSS e JS que uso até hoje.
                         </p>
                     </div>
 
-                    <!-- Item 3 -->
-                    <div class="timeline-item past">
-                        <h3 class="font-semibold text-xl text-text-dark">Web Developer @ Consulfarma / ADA TINA Italy</h3>
-                        <p class="text-sm text-gray-500 mb-2">novembro de 2009 - novembro de 2012 (3 anos 1 mês)</p>
-                        <!-- DIMINUÍDO: text-base para text-sm -->
-                        <p class="text-sm text-text-secondary">
-                            Foco em desenvolvimento e manutenção de lojas virtuais e sites, estabelecendo a base para a proficiência técnica atual em HTML/CSS/JS.
-                        </p>
-                    </div>
-
-                    <!-- Item 4 -->
-                    <div class="timeline-item past">
-                        <h3 class="font-semibold text-xl text-text-dark">Web Designer @ Storm Corp</h3>
-                        <p class="text-sm text-gray-500 mb-2">outubro de 2006 - julho de 2009 (2 anos 10 meses)</p>
-                        <!-- DIMINUÍDO: text-base para text-sm -->
-                        <p class="text-sm text-text-secondary">
-                            Prototipação, desenvolvimento de portais e produção de identidade visual, iniciando a jornada no design digital.
+                    <div class="timeline-item">
+                        <h3 class="font-semibold text-lg sm:text-xl text-ink">web designer na Storm Corp</h3>
+                        <p class="text-sm text-ink-soft mb-2">outubro de 2006 – julho de 2009 (2 anos e 10 meses)</p>
+                        <p class="text-sm text-ink-soft">
+                            prototipei portal, desenvolvi site e produzi identidade visual — o início da minha carreira em design digital.
                         </p>
                     </div>
 
@@ -584,105 +492,79 @@
         </div>
     </section>
 
-    <!-- 8. Seção Contato (#contato) -->
-    <section id="contato" class="py-24 md:py-32 bg-primary-light px-4 md:px-8 text-center border-t border-gray-200">
-        <div class="max-w-4xl mx-auto">
-            <p class="text-base uppercase tracking-widest mb-3 font-inter" style="color: var(--color-accent-purple);">
-                FIM DA JORNADA
-            </p>
-            <h2 class="font-title h2-title text-4xl sm:text-5xl text-text-dark mb-8">
-                Vamos Conversar sobre Inovação?
-            </h2>
+    <!-- Contato -->
+    <section id="contato" class="py-24 md:py-32 px-5 sm:px-8 text-center border-t border-line">
+        <div class="max-w-2xl mx-auto">
+            <h2 class="font-title fs-h2 text-ink mb-6">vamos conversar?</h2>
 
-            <!-- DIMINUÍDO: text-xl para text-lg -->
-            <p class="text-lg text-text-secondary mb-12">
-                Estou disponível para discutir como podemos transformar ideias em produtos digitais de alto impacto, utilizando design e inteligência artificial de forma estratégica.
+            <p class="text-base sm:text-lg text-ink-soft mb-12">
+                tô disponível pra ajudar a transformar ideia em produto digital, usando design e ia de forma estratégica. me manda uma mensagem.
             </p>
 
-            <div class="flex flex-col sm:flex-row justify-center items-center gap-6">
-                <!-- E-mail -->
-                <a href="mailto:luciano.teixeira.designer@outlook.com" class="text-lg text-text-dark hover:text-accent-purple transition flex items-center">
-                    <i data-lucide="mail" class="w-5 h-5 mr-2"></i> luciano.teixeira.designer@outlook.com
+            <div class="flex flex-col sm:flex-row justify-center items-center gap-5 sm:gap-8 text-sm sm:text-base">
+                <a href="mailto:luciano.teixeira.designer@outlook.com" class="text-ink hover:text-accent transition flex items-center link-underline">
+                    <i data-lucide="mail" class="w-4 h-4 mr-2"></i> luciano.teixeira.designer@outlook.com
                 </a>
-                
-                <!-- LinkedIn -->
-                <a href="https://www.linkedin.com/in/lucianofteixeira" target="_blank" class="text-lg text-text-dark hover:text-accent-purple transition flex items-center">
-                    <i data-lucide="linkedin" class="w-5 h-5 mr-2"></i> /in/lucianofteixeira
+                <a href="https://www.linkedin.com/in/lucianofteixeira" target="_blank" class="text-ink hover:text-accent transition flex items-center link-underline">
+                    <i data-lucide="linkedin" class="w-4 h-4 mr-2"></i> /in/lucianofteixeira
                 </a>
-
-                <!-- Telefone -->
-                <a href="tel:+5519991565876" class="text-lg text-text-dark hover:text-accent-purple transition flex items-center">
-                    <i data-lucide="phone" class="w-5 h-5 mr-2"></i> +55 19 99156-5876
+                <a href="tel:+5519991565876" class="text-ink hover:text-accent transition flex items-center link-underline">
+                    <i data-lucide="phone" class="w-4 h-4 mr-2"></i> +55 19 99156-5876
                 </a>
             </div>
-            
         </div>
-        
-        <!-- Créditos Finais (Novo Footer Compacto) -->
-        <p class="text-sm text-gray-500 font-sans pt-20">
-            © 2025 Luciano Teixeira | Product Designer Especialista.
+
+        <p class="text-sm text-ink-soft pt-20">
+            © 2026 luciano teixeira, product designer especialista.
         </p>
     </section>
 
-    <!-- Script para inicializar ícones Lucide -->
     <script>
         lucide.createIcons();
     </script>
-    
-    <!-- Script para o Scroll Suave (Fallback para navegadores antigos e melhor controle) -->
+
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             const navLinks = document.querySelectorAll('a[href^="#"]');
-            
+
             navLinks.forEach(link => {
-                link.addEventListener('click', function(e) {
-                    // Previne o comportamento padrão (salto direto) apenas se o scroll-behavior: smooth não funcionar
+                link.addEventListener('click', function (e) {
                     if (window.getComputedStyle(document.body).scrollBehavior !== 'smooth') {
                         e.preventDefault();
                     }
-                    
+
                     const targetId = this.getAttribute('href');
                     const targetElement = document.querySelector(targetId);
 
                     if (targetElement) {
-                        // Fecha o menu mobile se estiver aberto
                         const mobileMenu = document.getElementById('mobile-menu');
                         if (!mobileMenu.classList.contains('hidden')) {
                             mobileMenu.classList.add('hidden');
                         }
 
-                        // Calcula a posição do scroll
                         let offsetTop = targetElement.offsetTop;
-                        // Ajusta se não for o hero (para compensar o header fixo)
                         if (targetId !== '#hero') {
-                            offsetTop -= 80; // Altura do header (h-20 = 80px)
+                            offsetTop -= 80;
                         } else {
-                            offsetTop = 0; // Rola para o topo exato
+                            offsetTop = 0;
                         }
 
-                        window.scrollTo({
-                            top: offsetTop,
-                            behavior: 'smooth'
-                        });
+                        window.scrollTo({ top: offsetTop, behavior: 'smooth' });
 
-                        // Previne o comportamento padrão se o JS for executado
                         if (window.getComputedStyle(document.body).scrollBehavior === 'smooth') {
-                             e.preventDefault();
+                            e.preventDefault();
                         }
                     }
                 });
             });
 
-            // --- NOVO SCRIPT DO MENU MOBILE ---
             const menuButton = document.getElementById('mobile-menu-button');
             const mobileMenu = document.getElementById('mobile-menu');
 
             menuButton.addEventListener('click', () => {
                 mobileMenu.classList.toggle('hidden');
             });
-            // --- FIM DO NOVO SCRIPT ---
         });
     </script>
 </body>
 </html>
-
